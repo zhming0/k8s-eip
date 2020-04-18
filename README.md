@@ -1,5 +1,8 @@
 # K8S-EIP
 
+![GitHub](https://img.shields.io/github/license/zhming0/k8s-eip)
+![Docker Pulls](https://img.shields.io/docker/pulls/zhming0/k8s-eip)
+
 Bind a group of AWS Elastic IPs to a group of Kubernetes Nodes that matches criteria.
 
 ## Huh? What is this?
