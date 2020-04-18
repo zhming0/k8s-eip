@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8s-eip.fullname" . }}
+  labels:
+    {{- include "k8s-eip.labels" . | nindent 4 }}
+spec:
+  replicas: 1 # Hard coded to avoid race condition
+  selector:
+    matchLabels:
+      {{- include "k8s-eip.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "k8s-eip.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "k8s-eip.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "zhming0/k8s-eip:{{ .Chart.AppVersion }}"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: AWS_REGION
+              value: {{ required ".Values.awsRegion required" .Values.awsRegion }}
+            - name: K8S_EIP_IPS
+              value: {{ required ".Values.ips required" .Values.ips | quote }}
+            - name: K8S_EIP_LABEL_SELECTOR
+              value: {{ required ".Values.labelSelector required" .Values.labelSelector | quote }}
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "k8s-eip.fullname" . }}
+                  key: aws-access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "k8s-eip.fullname" . }}
+                  key: aws-secret-key
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
