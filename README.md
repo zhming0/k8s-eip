@@ -94,15 +94,16 @@ Then
 helm upgrade -i \
   -f values.yaml \ # The yaml file that you prepared
   -n kube-system \ # This could be any namespace, kube-system is a good idea
-  k8s-eip # any name
-  ./charts/k8s-eip
+  k8s-eip \ # any name
+  https://github.com/zhming0/k8s-eip/releases/download/v0.0.1/k8s-eip-0.0.1.tgz
 ```
 
 Note:
-*Helm is flexible.
+- *Helm is flexible.
 There are many ways to supply values.
 Please refer to [their doc](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing)
 for other options.*
+- use `--dry-run` to preview the changes
 
 ### Using Helm v2
 
