@@ -1,7 +1,7 @@
 # K8S-EIP
 
-![GitHub](https://img.shields.io/github/license/zhming0/k8s-eip)
-![Docker Pulls](https://img.shields.io/docker/pulls/zhming0/k8s-eip)
+![License](https://img.shields.io/github/license/zhming0/k8s-eip?link=https://github.com/zhming0/k8s-eip/blob/master/LICENSE)
+![Docker Pulls](https://img.shields.io/docker/pulls/zhming0/k8s-eip?link=https://hub.docker.com/repository/docker/zhming0/k8s-eip)
 [![zhming0](https://circleci.com/gh/zhming0/k8s-eip.svg?style=svg)](https://circleci.com/gh/zhming0/k8s-eip)
 
 Bind a group of AWS Elastic IPs to a group of Kubernetes Nodes that matches criteria.
