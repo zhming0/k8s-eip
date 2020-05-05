@@ -56,7 +56,7 @@ Quick test: `kubectl cluster-info`
 Via: `kubectl`
 
 ```
-kubectl label node YOUR_NODE_NAME bation=true
+kubectl label node YOUR_NODE_NAME bastion=true
 ```
 
 Via: `kops`
@@ -70,7 +70,7 @@ spec:
   ...
   nodeLabels:
     ...
-    bation: "true" # Or anything you want
+    bastion: "true" # Or anything you want
   ...
 
 ```
@@ -86,7 +86,7 @@ awsRegion: us-east-1
 # Elastic IPs that you own and want to attach to targeting nodes
 ips: "8.8.8.8,1.1.1.1"  # example
 # The label on Nodes that you want to have elastic IPs attached
-labelSelector: "bation=true" # example
+labelSelector: "bastion=true" # example
 ```
 
 Then
