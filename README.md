@@ -8,25 +8,24 @@ Bind a group of AWS Elastic IPs to a group of Kubernetes Nodes that matches crit
 
 ## Huh? What is this?
 
-> Q: What are you trying to solve mate?
+### Q: What is k8s-eip trying to solve?
 
-> A: I don't want to create many unnecessary ELBs just for my toy cluster created by kops.
+I don't want to create many unnecessary ELBs just for my toy cluster created by kops.
 
-> Q: Can't you just use `nginx-ingress` so you just create one ELB for many services?
+### Q: Can't you just use `nginx-ingress` so you just create one ELB for many services?
 
-> A: Nah, I don't want to pay that $18/month either. I don't want any ELB.
+Nah, I don't want to pay that $18/month either. I don't want any ELB.
 
-> Q: What a miser! But how?
+### Q: What a miser! But how?
 
-> A:
 `k8s-eip` for you.
 It's similar to the [kube-ip](https://github.com/doitintl/kubeip) but for AWS and less mature.
 It would bind a group of specified Elastic IPs to a number of K8S nodes on AWS.
 It runs in a periodic way, so **you can't use it for HA/critical use cases**.
 
-> Q: Would it trigger the scary Elastic IP remap fee?
+### Q: Would it trigger the scary Elastic IP remap fee?
 
-> A: As a project with a goal of saving money, surely no :).
+As a project with a goal of saving money, surely no :).
 Actually, it will **try** not to.
 
 ## How to use it?
